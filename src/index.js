@@ -2,13 +2,13 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import { CountProviders } from './poviders/CountProviders';
+import { ThemeProvider } from './context/ThemeContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <CountProviders>
+    <ThemeProvider>
       <App />
-    </CountProviders>
+    </ThemeProvider>
   </React.StrictMode>
 );
