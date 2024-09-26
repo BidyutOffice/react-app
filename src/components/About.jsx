@@ -1,33 +1,20 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import useFetch from "../hooks/useFetch";
 
 const About = () => {
 
-    const [posts, setPosts] = useState(null)
-    const [loading, setLoading] = useState(false)
     const [postid, setPostId] = useState(1)
+    const { data: posts, loading, error } = useFetch(`posts/${postid}`)
 
     const togglePostId = () => setPostId(prevPostId => prevPostId + 1)
 
-    useEffect(() => {
-        const get = async () => {
-            setLoading(true)
-            try {
-                const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${postid}`)
-                const data = await response.json()
-                setPosts(data)
-            } catch (err) {
-                console.log(err);
-            } finally {
-                setLoading(false)
-            }
-        }
-        get()
-    }, [postid])
-
     return (<>
         <h1 className="cursor-pointer" onClick={togglePostId}>Posts {postid}</h1>
-        {loading && <p>Loading...</p>}
-        {posts && <p>{posts.title}</p>}
+
+        {error && <p>{error}</p>}
+
+        {loading ? <p>Loading...</p> : posts && <p>{posts.title}</p>}
+
         {/* <ul className="p-6">
             {posts && posts?.length > 0 ?
                 posts.map((post) => (

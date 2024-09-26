@@ -5,6 +5,7 @@ import { BsMoonStars } from "react-icons/bs";
 import ThemeContext from './context/ThemeContext';
 import Logo from "./assets/logo.png"
 import About from './components/About';
+import Contact from './components/Contact';
 
 const App = () => {
 
@@ -26,6 +27,8 @@ const App = () => {
 			</nav>
 		</header>
 		<About />
+
+		<Contact />
 	</>);
 }
 

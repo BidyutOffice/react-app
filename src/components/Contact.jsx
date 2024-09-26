@@ -1,13 +1,14 @@
-import React, { useContext } from 'react'
-import CountContext from '../context/CountContext'
+import React from 'react'
+import useFetch from '../hooks/useFetch'
 
 const Contact = () => {
 
-    const { count } = useContext(CountContext)
+    const { data: users, loading, error } = useFetch('users')
+
+    console.log(users);
 
     return (<>
         <div>Contact</div>
-        {count}
     </>)
 }
 
