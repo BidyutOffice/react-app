@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useMemo } from 'react'
 import useFetch from '../hooks/useFetch'
 
 const Contact = () => {
 
-    const { data: users, loading, error } = useFetch('users')
+    const options = useMemo(() => ({ method: 'GET' }), [])
+
+    const { data: users, loading, error } = useFetch('users', options, [])
 
     console.log(users);
 

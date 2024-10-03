@@ -1,27 +1,7 @@
-import React, { useEffect, useState } from "react";
-import About from "./About";
-
-const Home = ({ info }) => {
-
-    const [a, setA] = useState(false)
-    console.log('object');
-
-    useEffect(() => {
-        for (let i = 0; i < 5000; i++) {
-            console.log(i);
-        }
-        return
-    }, [])
-
-    return (
-        <>
-            {/* <About info={info} /> */}
-            <button onClick={() => setA(!a)}>Toggle</button>
-            <br />
-            <br />
-            {a ? "TRUE" : "FALSE"}
-        </>
-    );
+const Home = () => {
+    return (<>
+        <h1 className="text-center text-6xl text-red-500 font-bold">welcome to home page</h1>
+    </>);
 };
 
 export default Home;

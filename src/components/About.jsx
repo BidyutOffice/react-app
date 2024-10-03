@@ -1,27 +1,29 @@
-import { useState } from "react";
+import { useState, useMemo, useEffect } from "react";
 import useFetch from "../hooks/useFetch";
 
 const About = () => {
+    const options = useMemo(() => ({ method: 'GET' }), [])
 
-    const [postid, setPostId] = useState(1)
-    const { data: posts, loading, error } = useFetch(`posts/${postid}`)
+    const [offset, setOffset] = useState(0)
+    const [products, setProducts] = useState([])
 
-    const togglePostId = () => setPostId(prevPostId => prevPostId + 1)
+    const { data, loading, error } = useFetch(`products?offset=${offset}&limit=10`, options, [])
+
+    const changeOffset = () => {
+        setOffset(offset + 10)
+    }
+
+    useEffect(() => {
+        setProducts(prevdata => [...prevdata, ...data])
+    }, [data])
 
     return (<>
-        <h1 className="cursor-pointer" onClick={togglePostId}>Posts {postid}</h1>
-
-        {error && <p>{error}</p>}
-
-        {loading ? <p>Loading...</p> : posts && <p>{posts.title}</p>}
-
-        {/* <ul className="p-6">
-            {posts && posts?.length > 0 ?
-                posts.map((post) => (
-                    <li key={post.id}>{post.title}</li>
-                ))
-                : <li>Data not Found</li>}
-        </ul> */}
+        <h1>Products Page | About Page</h1>
+        {loading && <p>Loading...</p>}
+        {products && products.map((product, index) => (
+            <div className="p-2 text-red-600" key={index}>{product.id}. {product.title}</div>
+        ))}
+        <button onClick={changeOffset}>load more</button>
     </>)
 
 };

@@ -1,34 +1,31 @@
-import { useContext } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import './App.css';
-import { GoSun } from "react-icons/go";
-import { BsMoonStars } from "react-icons/bs";
-import ThemeContext from './context/ThemeContext';
-import Logo from "./assets/logo.png"
+import Header from './components/common/Header';
+import Home from './components/Home';
 import About from './components/About';
-import Contact from './components/Contact';
+import AboutLayout from './components/AboutLayout';
+import Random from './components/Random';
 
 const App = () => {
 
-	const { toggleTheme, theme } = useContext(ThemeContext);
-
 	return (<>
-		<header className='bg-slate-200 px-12 py-4 dark:bg-slate-800'>
-			<nav className='flex justify-between items-center'>
-				<a href={'/'} className='text-2xl text-blue-600 font-bold flex'>
-					<img className='w-8' src={Logo} alt="" />QuickStart</a>
-				<ul className='flex gap-5'>
-					<li><a className='text-slate-800 dark:text-slate-200 font-semibold' href={'/'}>Home</a></li>
-					<li><a className='text-slate-800 dark:text-slate-200 font-semibold' href={'/'}>About</a></li>
-					<li><a className='text-slate-800 dark:text-slate-200 font-semibold' href={'/'}>Conatct</a></li>
-				</ul>
-				<div onClick={toggleTheme} className='text-red-500 text-lg' >
-					{theme === 'dark' ? <GoSun /> : <BsMoonStars />}
-				</div>
-			</nav>
-		</header>
-		<About />
+		<Header />
+		<Routes>
+			<Route path='/' element={<Home />} />
+			{/* <Route path='/about' element={<About />} />
+			<Route path='/about' element={<h2>about new page</h2>} /> */}
 
-		<Contact />
+			{/* group routes */}
+			<Route path='/about' element={<AboutLayout />}>
+				<Route index element={<About />} />
+				<Route path='new1' element={<h2>about new page 1</h2>} />  	{/* /about/new1 */}
+				<Route path='new2' element={<h2>about new page 2</h2>} />	{/* /about/new2 */}
+				<Route path='new3' element={<h2>about new page 3</h2>} />	{/* /about/new3 */}
+				<Route path=':id' element={<Random />} />	{/* /about/:id */}
+			</Route>
+
+			<Route path='*' element={<h2>404 page not found</h2>} />
+		</Routes>
 	</>);
 }
 
