@@ -5,6 +5,8 @@ import Home from './components/Home';
 import About from './components/About';
 import AboutLayout from './components/AboutLayout';
 import Random from './components/Random';
+import Products from './components/Products';
+import ViewProduct from './components/ViewProduct';
 
 const App = () => {
 
@@ -14,6 +16,8 @@ const App = () => {
 			<Route path='/' element={<Home />} />
 			{/* <Route path='/about' element={<About />} />
 			<Route path='/about' element={<h2>about new page</h2>} /> */}
+			<Route path='/products' element={<Products />} />
+			<Route path='/products/:productid/:title' element={<ViewProduct />} />
 
 			{/* group routes */}
 			<Route path='/about' element={<AboutLayout />}>

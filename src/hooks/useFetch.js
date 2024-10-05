@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 const API_BASE_URL = "https://jsonplaceholder.typicode.com"
 
 const useFetch = (path, options = {}, dependencies = []) => {
-    const [data, setData] = useState([]);
+    const [data, setData] = useState(null);
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState(null);
 

@@ -18,6 +18,9 @@ const Header = () => {
                     <Link className='text-slate-800 dark:text-slate-200 font-semibold' to={'/'}>Home</Link>
                 </li>
                 <li>
+                    <Link to={'/products'} className='text-slate-800 dark:text-slate-200 font-semibold' >products</Link>
+                </li>
+                <li>
                     <Link className='text-slate-800 dark:text-slate-200 font-semibold' to={'/about'}>About</Link>
                 </li>
             </ul>
